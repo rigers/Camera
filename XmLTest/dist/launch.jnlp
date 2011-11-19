@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="file:/C:/Users/jaden/Documents/NetBeansProjects/XmLTest/dist/" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>XmLTest</title>
+        <vendor>jaden</vendor>
+        <homepage href=""/>
+        <description>XmLTest</description>
+        <description kind="short">XmLTest</description>
+        
+        
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se version="1.6+"/>
+        <jar href="XmLTest.jar" main="true"/>
+        
+        
+    <jar href="lib/xerces.jar"/>
+<jar href="lib/google-voice-java-1.6.jar"/>
+<jar href="lib/google-voice-java-1.8-java5.jar"/>
+<jar href="lib/json.jar"/>
+</resources>
+    <application-desc main-class="TestX.ReadXML">
+        
+    </application-desc>
+</jnlp>
