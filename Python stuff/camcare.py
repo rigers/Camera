@@ -5,8 +5,9 @@ import time
 from math import cos, sin
 import math
 import cv
-import Cord_people as cord_p
+# import Cord_people as cord_p
 from cv import *
+from xml.dom.minidom import Document
 
 CLOCKS_PER_SEC = 1.0
 MHI_DURATION = 1
@@ -23,6 +24,41 @@ orient_2 = None # orientation
 mask_2 = None # valid orientation mask
 segmask = None # motion segmentation map
 storage = None # temporary storage
+
+filename = "action.xml"
+
+
+
+# Create the minidom document
+doc = Document()
+
+# Create the <detect> base element
+detect = doc.createElement("detect")
+doc.appendChild(detect)
+
+# Create the <action> element
+action = doc.createElement("action")
+detect.appendChild(action)
+
+# Give the <action> elemenet some text
+action_text = doc.createTextNode("0")
+action.appendChild(action_text)
+
+target = open(filename, 'w')
+
+# Print our newly created XML
+# print doc.toprettyxml(indent="  ")
+
+
+target.write(doc.toprettyxml(indent="  "))
+
+target.close()
+
+
+
+
+
+
 
 
 def update_mhi(img, dst, diff_threshold):
@@ -302,18 +338,6 @@ def hog_D(ima):
                   
                   
                   
-                   
-              
-           
-            
-            
-            
-            
-
-
-
-
-            
 
 if __name__ == "__main__":
     motion = 0
@@ -327,6 +351,8 @@ if __name__ == "__main__":
     R = (0,0,0,0)
     r = 0
     k =2   
+	
+
 
     if len(sys.argv)==1:
         capture = cv.CaptureFromCAM(0)
@@ -354,23 +380,23 @@ if __name__ == "__main__":
        
            
    
-        image = cv.CreateMat(240,320,cv.CV_8UC3)
+        # image = cv.CreateMat(240,320,cv.CV_8UC3)
 ##        img3 = cv.CreateMat(240,320,cv.CV_8UC3)
 
-        cv.PyrDown(img,image)
+        # cv.PyrDown(img,image)
 ##        cv.PyrDown(image,img3)
 
 
 
         
-        if(image):
+        if(img):
             if(not motion):
-                    motion = cv.CreateImage((image.width, image.height), 8, 3)
+                    motion = cv.CreateImage((img.width, img.height), 8, 3)
                     cv.Zero(motion)
                     #motion.origin = image.origin
-            hog_D(image)
+            hog_D(img)
             
-            update_mhi(image, motion, 30)
+            update_mhi(img, motion, 30)
            
             
             cv.ShowImage("Motion", motion)

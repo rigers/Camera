@@ -42,7 +42,7 @@ while True:
     ##        img = LoadImage(n)
     ##    except:
     ##        continue
-        
+
         ##ClearMemStorage(storage)
 
 ##    print GetSize(img)
@@ -64,7 +64,7 @@ while True:
 ##    res = fromarray(res)
 
 
-    
+
     found = list(HOGDetectMultiScale(img2, storage, win_stride=(8,8),
         padding=(32,32), scale=1.05, group_threshold=2))
     found_filtered = []
@@ -78,21 +78,21 @@ while True:
             found_filtered.append(r)
     for r in found_filtered:
         (rx, ry), (rw, rh) = r
-##        print(rx, ry, rw, rh)
-        target = open(filename, 'w')
-        target.write(str(rx))
-        target.write(" ")
-        target.write(str(ry))
-        target.write(" ")
-        target.write(str(rw))
-        target.write(" ")
-        target.write(str(rh))
-        target.write("\n")
-        target.close()
+        print(rx, ry, rw, rh)
+        # target = open(filename, 'w')
+        # target.write(str(rx))
+        # target.write(" ")
+        # target.write(str(ry))
+        # target.write(" ")
+        # target.write(str(rw))
+        # target.write(" ")
+        # target.write(str(rh))
+        # target.write("\n")
+        # target.close()
         tl = (rx + int(rw*0.1), ry + int(rh*0.07))
         br = (rx + int(rw*0.9), ry + int(rh*0.87))
         Rectangle(img2, tl, br, (0, 255, 0), 1)
-            
+
     ShowImage("people detection demo", img2)
 
 ##    def run(self):
@@ -119,7 +119,7 @@ while True:
 
 
 
-    
+
 ##    c = WaitKey(0)
     ##if c == ord('q'):
     ##    break
